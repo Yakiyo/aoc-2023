@@ -7,21 +7,21 @@ function exists(p: string): boolean {
 	}
 }
 
-if (Deno.args.length < 2) {
+if (Deno.args.length < 1) {
 	console.error(
-		'Please pass both day number and part number argument',
+		'Please pass day number as argument',
 	);
 	Deno.exit(1);
 }
 
-const [day, part] = Deno.args;
+const [day] = Deno.args;
 
-if (isNaN(Number(day)) || isNaN(Number(part))) {
-	console.error('Arguments day and part must both be whole integers');
+if (isNaN(Number(day))) {
+	console.error('Arguments day must be a valid integer');
 	Deno.exit(1);
 }
 
-let path = `./day_${day}/part_${part}.ts`;
+let path = `./src/day_${day}.ts`;
 
 if (!exists(path)) {
 	// maybe ts doesnt exist, try js
@@ -34,6 +34,10 @@ if (!exists(path)) {
 	}
 }
 
+console.time('execution');
+
 await import(path);
+
+console.timeEnd('execution');
 
 Deno.exit(0);

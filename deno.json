@@ -1,10 +1,8 @@
 {
 	"fmt": {
-		"options": {
-			"useTabs": true,
-			"lineWidth": 70,
-			"singleQuote": true
-		}
+		"useTabs": true,
+		"lineWidth": 70,
+		"singleQuote": true
 	},
 	"tasks": {
 		"fix": "deno fmt && deno lint",
