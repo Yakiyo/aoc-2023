@@ -79,4 +79,4 @@ function partOne(input: string[]) {
 		.reduce((acc, curr) => acc + curr, 0); // add em
 }
 
-console.log(`Part 1: ${partOne(input)}`);
+console.log(`Part 1: ${partOne(input)}`); // 2369

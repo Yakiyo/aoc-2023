@@ -5,21 +5,13 @@ const input = (await readInput(1))
 		'\n',
 	);
 
-function calibrate(input: string[]): number {
+function partOne(input: string[]): number {
 	return input.map((s) => {
 		const c = s.split('').filter(isNum);
 		return Number(`${c.at(0)}${c.at(-1)}`);
 	})
 		.reduce((acc, curr) => acc + curr, 0);
 }
-
-// part 1
-
-const part1 = calibrate(input);
-
-console.log(`Part 1: ${part1}`);
-
-// part 2
 
 const reps = new Map(Object.entries({
 	'one': '1',
@@ -56,9 +48,13 @@ export function parse(str: string): string[] {
 	return nums;
 }
 
-const part2 = input.map((s) => {
-	const nums = parse(s);
-	return Number(`${nums.at(0)}${nums.at(-1)}`);
-}).reduce((acc, curr) => acc + curr, 0);
+function partTwo(input: string[]) {
+	return input.map((s) => {
+		const nums = parse(s);
+		return Number(`${nums.at(0)}${nums.at(-1)}`);
+	}).reduce((acc, curr) => acc + curr, 0);
+}
 
-console.log(`Part 2: ${part2}`);
+console.log(`Part 1: ${partOne(input)}`); // 54644
+
+console.log(`Part 2: ${partTwo(input)}`); // 53348
