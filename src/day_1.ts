@@ -25,7 +25,7 @@ const reps = new Map(Object.entries({
 	'nine': '9',
 }));
 
-export function parse(str: string): string[] {
+export function parseNumbers(str: string): string[] {
 	const nums: string[] = [];
 	for (let i = 0; i <= str.length; i++) {
 		// if first char is a num, push it and continue with loop
@@ -50,7 +50,7 @@ export function parse(str: string): string[] {
 
 function partTwo(input: string[]) {
 	return input.map((s) => {
-		const nums = parse(s);
+		const nums = parseNumbers(s);
 		return Number(`${nums.at(0)}${nums.at(-1)}`);
 	}).reduce((acc, curr) => acc + curr, 0);
 }
