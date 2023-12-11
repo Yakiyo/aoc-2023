@@ -1,4 +1,7 @@
-import { assert, assertEquals } from 'https://deno.land/std@0.208.0/assert/mod.ts';
+import {
+	assert,
+	assertEquals,
+} from 'https://deno.land/std@0.208.0/assert/mod.ts';
 import { parse } from './day_1.ts';
 import { isValidGame, parseGame, parseRecord } from './day_2.ts';
 
@@ -50,12 +53,14 @@ Deno.test('Day 2: is valid game test', () => {
 		],
 	}));
 
-	assert(!isValidGame({
-		id: 7,
-		records: [
-			{ red: 14, blue: 3, green: 0 },
-			{ red: 1, blue: 6, green: 2 },
-			{ red: 0, blue: 0, green: 2 },
-		],
-	}));
+	assert(
+		!isValidGame({
+			id: 7,
+			records: [
+				{ red: 14, blue: 3, green: 0 },
+				{ red: 1, blue: 6, green: 2 },
+				{ red: 0, blue: 0, green: 2 },
+			],
+		}),
+	);
 });
