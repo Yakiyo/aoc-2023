@@ -1,21 +1,25 @@
-const isNum = (char: string): boolean => char >= '0' && char <= '9';
+import { isNum, readInput } from '../util.ts';
 
-function calibrate(input: string[]): number {
-    return input.map((s) => {
-		const c = s.split('');
-		return Number(`${c.find(isNum)}${c.findLast(isNum)}`);
-	})
-	.reduce((acc, curr) => acc + curr, 0)
-}
-
-const input = (await Deno.readTextFile('./inputs/1.txt'))
+const input = (await readInput(1))
 	.split(
 		'\n',
 	);
 
+function calibrate(input: string[]): number {
+	return input.map((s) => {
+		const c = s.split('').filter(isNum);
+		return Number(`${c.at(0)}${c.at(-1)}`);
+	})
+		.reduce((acc, curr) => acc + curr, 0);
+}
+
+// part 1
+
 const part1 = calibrate(input);
 
-console.log('part 1: ', part1);
+console.log(`Part 1: ${part1}`);
+
+// part 2
 
 const reps = new Map(Object.entries({
 	'one': '1',
@@ -26,16 +30,35 @@ const reps = new Map(Object.entries({
 	'six': '6',
 	'seven': '7',
 	'eight': '8',
-	'nine': '9,',
+	'nine': '9',
 }));
 
-const newInput = input.map(s => {
-    for (const [k, v] of reps) {
-        s = s.replaceAll(k, `${v}${k}`);
-    }
-    return s;
-})
+export function parse(str: string): string[] {
+	const nums: string[] = [];
+	for (let i = 0; i <= str.length; i++) {
+		// if first char is a num, push it and continue with loop
+		if (isNum(str[i])) {
+			nums.push(str[i]);
+			continue;
+		}
+		// otherwise get the slice from current index,
+		// and if it starts with a valid number-text,
+		// push it and exit inner loop
+		const slice = str.slice(i);
+		for (const [k, v] of reps) {
+			if (slice.startsWith(k)) {
+				nums.push(v);
+				break;
+			}
+		}
+	}
+	if (nums.length < 1) throw `got at ${str}`;
+	return nums;
+}
 
-const part2 = calibrate(newInput);
+const part2 = input.map((s) => {
+	const nums = parse(s);
+	return Number(`${nums.at(0)}${nums.at(-1)}`);
+}).reduce((acc, curr) => acc + curr, 0);
 
-console.log("part 2: ", part2);
+console.log(`Part 2: ${part2}`);
