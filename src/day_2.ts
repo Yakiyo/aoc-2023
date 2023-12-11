@@ -79,4 +79,24 @@ function partOne(input: string[]) {
 		.reduce((acc, curr) => acc + curr, 0); // add em
 }
 
+function powerOfGame(game: Game): number {
+	let red = 0;
+	let blue = 0;
+	let green = 0;
+	game.records.forEach((v) => {
+		if (v.red > red) red = v.red;
+		if (v.blue > blue) blue = v.blue;
+		if (v.green > green) green = v.green;
+	});
+	return red * blue * green;
+}
+
+function partTwo(input: string[]) {
+	return input
+		.map(parseGame) // convert lines to Games
+		.map(powerOfGame) // calculate power of each Game
+		.reduce((acc, curr) => acc + curr, 0); // sum em
+}
+
 console.log(`Part 1: ${partOne(input)}`); // 2369
+console.log(`Part 2: ${partTwo(input)}`); // 66363
