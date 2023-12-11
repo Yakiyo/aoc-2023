@@ -2,11 +2,12 @@ import {
 	assert,
 	assertEquals,
 } from 'https://deno.land/std@0.208.0/assert/mod.ts';
-import { parse } from './day_1.ts';
+import { parseNumbers } from './day_1.ts';
 import { isValidGame, parseGame, parseRecord } from './day_2.ts';
+import { getSurroundings, parseNumbers as parseSchematicNumbers } from './day_3.ts';
 
 Deno.test('Day 1: parse test', () => {
-	assertEquals(parse('vzxf4tqrljgxmthreejcr'), ['4', '3']);
+	assertEquals(parseNumbers('vzxf4tqrljgxmthreejcr'), ['4', '3']);
 });
 
 Deno.test('Day 2: parse record test', () => {
@@ -63,4 +64,15 @@ Deno.test('Day 2: is valid game test', () => {
 			],
 		}),
 	);
+});
+
+Deno.test('Day 3: parse numbers test', () => {
+	assertEquals(parseSchematicNumbers('467..114..', 1), [
+		{ value: '467', position: [0, 1] },
+		{ value: '114', position: [5, 1] },
+	]);
+});
+
+Deno.test('Day 3: get surroundings test', () => {
+	console.log(getSurroundings({ value: '114', position: [5, 0] }))
 });
