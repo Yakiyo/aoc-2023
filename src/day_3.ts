@@ -119,4 +119,4 @@ function partTwo(input: string[]) {
 }
 
 console.log(`Part 1: ${partOne(input)}`); // 533775
-console.log(`Part 2: ${partTwo(input)}`);
+console.log(`Part 2: ${partTwo(input)}`); // 78236071
