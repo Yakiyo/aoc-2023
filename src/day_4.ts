@@ -11,13 +11,16 @@ function partOne(input: string[]) {
 		.reduce((acc, curr) => acc + curr, 0); // add em
 }
 
-export function parseCard(line: string): [number[], number[]] {
-	const [_card, _colon, wins, _bar, gains] = line.split(/(:|\|)/).map(
+export function parseCard(
+	line: string,
+): [number[], number[], number] {
+	const [card, _colon, wins, _bar, gains] = line.split(/(:|\|)/).map(
 		(x) => x.trim(),
 	);
 	return [
 		wins.split(/ +/).map(Number),
 		gains.split(/ +/).map(Number),
+		Number(card.replace('Card ', '')),
 	];
 }
 

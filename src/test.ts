@@ -89,7 +89,7 @@ Deno.test('Day 3: get surroundings test', () => {
 
 Deno.test('Day 3: parse card test', () => {
 	const str = 'Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53';
-	assertEquals<[number[], number[]]>(parseCard(str), [
+	assertEquals<[number[], number[], number]>(parseCard(str), [
 		[41, 48, 83, 86, 17],
 		[
 			83,
@@ -101,5 +101,6 @@ Deno.test('Day 3: parse card test', () => {
 			48,
 			53,
 		],
+		1,
 	]);
 });
