@@ -8,6 +8,7 @@ import {
 	getSurroundings,
 	parseNumbers as parseSchematicNumbers,
 } from './day_3.ts';
+import { parseCard } from './day_4.ts';
 
 Deno.test('Day 1: parse test', () => {
 	assertEquals(parseNumbers('vzxf4tqrljgxmthreejcr'), ['4', '3']);
@@ -83,5 +84,22 @@ Deno.test('Day 3: get surroundings test', () => {
 		[0, 1],
 		[1, 1],
 		[2, 1],
+	]);
+});
+
+Deno.test('Day 3: parse card test', () => {
+	const str = 'Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53';
+	assertEquals<[number[], number[]]>(parseCard(str), [
+		[41, 48, 83, 86, 17],
+		[
+			83,
+			86,
+			6,
+			31,
+			17,
+			9,
+			48,
+			53,
+		],
 	]);
 });
