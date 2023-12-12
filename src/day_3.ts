@@ -5,6 +5,10 @@ type PartNumber = {
 	value: string;
 	position: Coordinate;
 };
+type GearRatio = {
+	position: Coordinate;
+	adjacents: PartNumber[]; // the two adjacent part numbers
+};
 
 const input = (await readInput(3)).split('\n');
 
@@ -68,4 +72,51 @@ function isValidPartNumber(
 	return false;
 }
 
+// This is kinda hacky. Theres prolly a better way to solve it.
+// This gets all the valid part numbers, then for every part number, it
+// gets their asterik surroundings. the asteriks are stored in a ratios array,
+// with their adjacent values. if an asterik value of the same co-ordinate exists already
+// we update it, else add a new entry to ratios.
+function partTwo(input: string[]) {
+	const partNumbers = input
+		.map((line, column) => parseNumbers(line, column)) // get part numbers from each line
+		.flat()
+		.filter((i) => isValidPartNumber(i, input));
+	const ratios: GearRatio[] = [];
+	for (const partNumber of partNumbers) {
+		const asteriks = getSurroundings(partNumber)
+			.map(([x, y]) => ({
+				char: (input.at(y) ?? '')[x],
+				x,
+				y,
+			}))
+			.filter((v) => v.char === '*');
+		for (const asterik of asteriks) {
+			const exists = ratios.findIndex((i) => {
+				const [x, y] = i.position;
+				return x === asterik.x && y === asterik.y;
+			});
+			// if one exists, push the value in it
+			if (exists !== -1) {
+				ratios[exists].adjacents.push(partNumber);
+				continue;
+			}
+			// otherwise make a new one and add it
+			ratios.push({
+				position: [asterik.x, asterik.y],
+				adjacents: [partNumber],
+			});
+		}
+	}
+	return ratios
+		.filter((x) => x.adjacents.length === 2)
+		.map((x) =>
+			x.adjacents
+				.map((v) => Number(v.value))
+		)
+		.map((i) => i.reduce((acc, curr) => acc * curr, 1))
+		.reduce((acc, curr) => acc + curr, 0);
+}
+
 console.log(`Part 1: ${partOne(input)}`); // 533775
+console.log(`Part 2: ${partTwo(input)}`);
