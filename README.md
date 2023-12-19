@@ -19,4 +19,9 @@ $ deno task run <day_number>
 it should run it.
 
 ## notes
-While i do try to solve them by myself, but im [grug brained](https://grugbrain.dev), so i occassionally take inspiration from other people's solution, most notably from [didinele's solutions](https://github.com/didinele/aoc-2023), he writes em pretty neatly.
+
+While i do try to solve them by myself, but im
+[grug brained](https://grugbrain.dev), so i occassionally take
+inspiration from other people's solution, most notably from
+[didinele's solutions](https://github.com/didinele/aoc-2023), he
+writes em pretty neatly.
