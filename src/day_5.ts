@@ -112,5 +112,31 @@ function partOne(input: string) {
     return Math.min(...seeds.map(n => convert(n, maps)));
 }
 
+/**
+ * This SHOULD theoritically work, but the `seeds` array exceeds
+ * 1516 elements (much more but i quit at that point), and eventually 
+ * Deno throws the error `invalid array length`, so i assume this 
+ * solution is not feasible. I'm fairly certain some sort of smart
+ * and funky solution exists that can do it, guess i gotta go youtubing for it.
+ * Till then imma leave it incomplete.
+ */
+function partTwo(_input: string) {
+    // const inputs = input.split('\n\n');
+    // const seedPairs = inputs[0].replace('seeds: ', '').split(/ +/).map(Number);
+    // const seeds: number[] = [];
+    // for (let i = 0; i <= seedPairs.length; i += 2) {
+    //     const start = seedPairs[i];
+    //     const range = seedPairs[i + 1] - 1;
+    //     for (let j = 0; j <= range; j++) {
+    //         console.log(seeds.length);
+    //         seeds.push(start + j);
+    //     }
+    // }
+	// const maps = inputs.slice(1).map(AlmanacMap.parse);
+    // return Math.min(...seeds.map(n => convert(n, maps)));
+    return 0;
+}
+
 
 console.log(`Part 1: ${partOne(input)}`);
+console.log(`Part 2: ${partTwo(input)}`);
