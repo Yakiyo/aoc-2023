@@ -109,7 +109,7 @@ function partOne(input: string) {
     const inputs = input.split('\n\n');
     const seeds = inputs[0].replace('seeds: ', '').split(/ +/).map(Number);
 	const maps = inputs.slice(1).map(AlmanacMap.parse);
-    return seeds.map(n => convert(n, maps)).sort()[0];
+    return Math.min(...seeds.map(n => convert(n, maps)));
 }
 
 
