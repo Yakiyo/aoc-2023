@@ -1,0 +1,22 @@
+{
+	"part one function": {
+		"scope": "javascript,typescript",
+		"prefix": "p1",
+		"description": "create partOne function",
+		"body": [
+			"export function partOne(input: string) {",
+			"\treturn ${1:input};"
+			"}\n"
+		]
+	},
+	"part two function": {
+		"scope": "javascript,typescript",
+		"prefix": "p2",
+		"description": "create partTwo function",
+		"body": [
+			"export function partTwo(input: string) {",
+			"\treturn ${1:input};"
+			"}\n"
+		]
+	}
+}
