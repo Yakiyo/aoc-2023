@@ -1,4 +1,9 @@
-import { isNum, readInput } from '../util.ts';
+/**
+ * 1: 533775
+ * 2: 78236071
+ */
+
+import { isNum } from '../util.ts';
 
 type Coordinate = [number, number];
 type PartNumber = {
@@ -9,17 +14,6 @@ type GearRatio = {
 	position: Coordinate;
 	adjacents: PartNumber[]; // the two adjacent part numbers
 };
-
-const input = (await readInput(3)).split('\n');
-
-function partOne(input: string[]) {
-	return input
-		.map((line, column) => parseNumbers(line, column)) // get part numbers from each line
-		.flat()
-		.filter((i) => isValidPartNumber(i, input))
-		.map((i) => Number(i.value))
-		.reduce((acc, curr) => acc + curr, 0);
-}
 
 export function parseNumbers(line: string, y: number): PartNumber[] {
 	const nums: PartNumber[] = [];
@@ -72,16 +66,27 @@ function isValidPartNumber(
 	return false;
 }
 
+export function partOne(input: string) {
+	const split = input.split('\n');
+	return input.split('\n')
+		.map((line, column) => parseNumbers(line, column)) // get part numbers from each line
+		.flat()
+		.filter((i) => isValidPartNumber(i, split))
+		.map((i) => Number(i.value))
+		.reduce((acc, curr) => acc + curr, 0);
+}
+
 // This is kinda hacky. Theres prolly a better way to solve it.
 // This gets all the valid part numbers, then for every part number, it
 // gets their asterik surroundings. the asteriks are stored in a ratios array,
 // with their adjacent values. if an asterik value of the same co-ordinate exists already
 // we update it, else add a new entry to ratios.
-function partTwo(input: string[]) {
-	const partNumbers = input
+export function partTwo(input: string) {
+	const split = input.split('\n');
+	const partNumbers = input.split('\n')
 		.map((line, column) => parseNumbers(line, column)) // get part numbers from each line
 		.flat()
-		.filter((i) => isValidPartNumber(i, input));
+		.filter((i) => isValidPartNumber(i, split));
 	const ratios: GearRatio[] = [];
 	for (const partNumber of partNumbers) {
 		const asteriks = getSurroundings(partNumber)
@@ -117,6 +122,3 @@ function partTwo(input: string[]) {
 		.map((i) => i.reduce((acc, curr) => acc * curr, 1))
 		.reduce((acc, curr) => acc + curr, 0);
 }
-
-console.log(`Part 1: ${partOne(input)}`); // 533775
-console.log(`Part 2: ${partTwo(input)}`); // 78236071

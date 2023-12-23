@@ -1,6 +1,7 @@
-import { readInput } from '../util.ts';
-
-const input = (await readInput(4)).split('\n');
+/**
+ * 1: 24706
+ * 2: 13114317
+ */
 
 export function parseCard(
 	line: string,
@@ -19,8 +20,8 @@ function calcScore([wins, gains]: [number[], number[], number]) {
 	return gains.filter((i) => wins.includes(i)).length;
 }
 
-function partOne(input: string[]) {
-	return input
+export function partOne(input: string) {
+	return input.split('\n')
 		.map(parseCard) // map to cards
 		.map(calcScore) // filter only winning entries and get length
 		.filter((n) => n !== 0) // filter out zero values
@@ -28,8 +29,8 @@ function partOne(input: string[]) {
 		.reduce((acc, curr) => acc + curr, 0); // add em
 }
 
-function partTwo(input: string[]) {
-	const cards = input.map(parseCard);
+export function partTwo(input: string) {
+	const cards = input.split('\n').map(parseCard);
 	const copies: number[] = Array(cards.length).fill(0);
 
 	for (let i = 0; i < cards.length; i++) {
@@ -44,9 +45,6 @@ function partTwo(input: string[]) {
 
 	return copies.reduce((acc, curr) => acc + curr + 1, 0);
 }
-
-console.log(`Part 1: ${partOne(input)}`); // 24706
-console.log(`Part 2: ${partTwo(input)}`); // 13114317
 
 /**
  * This was a failed attempt. While it worked for the demo input, it didn't work for the actual one

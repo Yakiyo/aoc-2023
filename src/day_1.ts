@@ -1,17 +1,9 @@
-import { isNum, readInput } from '../util.ts';
+/**
+ * 1: 54644
+ * 2: 53348
+ */
 
-const input = (await readInput(1))
-	.split(
-		'\n',
-	);
-
-function partOne(input: string[]): number {
-	return input.map((s) => {
-		const c = s.split('').filter(isNum);
-		return Number(`${c.at(0)}${c.at(-1)}`);
-	})
-		.reduce((acc, curr) => acc + curr, 0);
-}
+import { isNum } from '../util.ts';
 
 const reps = new Map(Object.entries({
 	'one': '1',
@@ -48,13 +40,21 @@ export function parseNumbers(str: string): string[] {
 	return nums;
 }
 
-function partTwo(input: string[]) {
-	return input.map((s) => {
+export function partOne(input: string): number {
+	return input.split(
+		'\n',
+	).map((s) => {
+		const c = s.split('').filter(isNum);
+		return Number(`${c.at(0)}${c.at(-1)}`);
+	})
+		.reduce((acc, curr) => acc + curr, 0);
+}
+
+export function partTwo(input: string) {
+	return input.split(
+		'\n',
+	).map((s) => {
 		const nums = parseNumbers(s);
 		return Number(`${nums.at(0)}${nums.at(-1)}`);
 	}).reduce((acc, curr) => acc + curr, 0);
 }
-
-console.log(`Part 1: ${partOne(input)}`); // 54644
-
-console.log(`Part 2: ${partTwo(input)}`); // 53348

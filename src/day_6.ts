@@ -1,6 +1,7 @@
-import { readInput } from '../util.ts';
-
-const input = await readInput(6);
+/**
+ * 1: 2756160
+ * 2: 34788142
+ */
 
 /**
  * Calculate number of ways to do a race and return
@@ -15,7 +16,7 @@ function calcWins(time: number, record: number) {
 	return wins;
 }
 
-function partOne(input: string) {
+export function partOne(input: string) {
 	const [times, distances] = input
 		.split('\n')
 		.map((x) => x.split(':')[1].trim())
@@ -29,7 +30,7 @@ function partOne(input: string) {
 	return vals.reduce((acc, curr) => acc * curr, 1);
 }
 
-function partTwo(input: string) {
+export function partTwo(input: string) {
 	const [time, distance] = input
 		.split('\n')
 		.map((x) => x.split(':')[1].trim())
@@ -37,6 +38,3 @@ function partTwo(input: string) {
 		.map(Number);
 	return calcWins(time, distance);
 }
-
-console.log(`Part 1: ${partOne(input)}`);
-console.log(`Part 1: ${partTwo(input)}`);

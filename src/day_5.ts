@@ -1,6 +1,7 @@
-import { readInput } from '../util.ts';
-
-const input = await readInput(5);
+/**
+ * 1: 227653707
+ * 2: N/A
+ */
 
 class Range {
 	private source: number;
@@ -70,7 +71,7 @@ function convert(source: number, maps: AlmanacMap[]): number {
 	return n;
 }
 
-function partOne(input: string) {
+export function partOne(input: string) {
 	const inputs = input.split('\n\n');
 	const seeds = inputs[0].replace('seeds: ', '').split(/ +/).map(
 		Number,
@@ -87,7 +88,7 @@ function partOne(input: string) {
  * and funky solution exists that can do it, guess i gotta go youtubing for it.
  * Till then imma leave it incomplete.
  */
-function partTwo(_input: string) {
+export function partTwo(_input: string) {
 	// const inputs = input.split('\n\n');
 	// const seedPairs = inputs[0].replace('seeds: ', '').split(/ +/).map(Number);
 	// const seeds: number[] = [];
@@ -103,6 +104,3 @@ function partTwo(_input: string) {
 	// return Math.min(...seeds.map(n => convert(n, maps)));
 	return 0;
 }
-
-console.log(`Part 1: ${partOne(input)}`);
-console.log(`Part 2: ${partTwo(input)}`);

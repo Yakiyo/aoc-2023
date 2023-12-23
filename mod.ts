@@ -1,3 +1,5 @@
+import { readInput, type Solution } from './util.ts';
+
 function exists(p: string): boolean {
 	try {
 		Deno.statSync(p);
@@ -34,9 +36,19 @@ if (!exists(path)) {
 	}
 }
 
+const input = await readInput(parseInt(day, 10));
+
 console.time('execution');
 
-await import(path);
+const script = await import(path) as Record<string, Solution>;
+
+if ('partOne' in script) {
+	console.log('Part 1:', await script.partOne(input));
+}
+
+if ('partTwo' in script) {
+	console.log('Part 2:', await script.partTwo(input));
+}
 
 console.timeEnd('execution');
 

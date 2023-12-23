@@ -1,4 +1,7 @@
-import { readInput } from '../util.ts';
+/**
+ * 1: 2369
+ * 2: 66363
+ */
 
 type Game = {
 	id: number;
@@ -16,8 +19,6 @@ const MAX_VALS: GameRecord = {
 	green: 13,
 	red: 12,
 };
-
-const input = (await readInput(2)).split('\n');
 
 export function parseGame(str: string): Game {
 	const s = str.split(':');
@@ -71,14 +72,6 @@ export function isValidGame(game: Game): boolean {
 	return true;
 }
 
-function partOne(input: string[]) {
-	return input
-		.map(parseGame) // map lines to games
-		.filter(isValidGame) // filter valid games
-		.map((i) => i.id) // only take their ids
-		.reduce((acc, curr) => acc + curr, 0); // add em
-}
-
 function powerOfGame(game: Game): number {
 	let red = 0;
 	let blue = 0;
@@ -91,12 +84,17 @@ function powerOfGame(game: Game): number {
 	return red * blue * green;
 }
 
-function partTwo(input: string[]) {
-	return input
+export function partOne(input: string) {
+	return input.split('\n')
+		.map(parseGame) // map lines to games
+		.filter(isValidGame) // filter valid games
+		.map((i) => i.id) // only take their ids
+		.reduce((acc, curr) => acc + curr, 0); // add em
+}
+
+export function partTwo(input: string) {
+	return input.split('\n')
 		.map(parseGame) // convert lines to Games
 		.map(powerOfGame) // calculate power of each Game
 		.reduce((acc, curr) => acc + curr, 0); // sum em
 }
-
-console.log(`Part 1: ${partOne(input)}`); // 2369
-console.log(`Part 2: ${partTwo(input)}`); // 66363
