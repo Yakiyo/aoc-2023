@@ -6,6 +6,7 @@
 	},
 	"tasks": {
 		"fix": "deno fmt && deno lint",
-		"run": "deno run --allow-read --allow-net mod.ts"
+		"run": "deno run --allow-read --allow-net mod.ts",
+		"test": "deno test -A src/**/*.ts"
 	}
 }
