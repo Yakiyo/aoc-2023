@@ -38,9 +38,9 @@ if (!exists(path)) {
 
 const input = await readInput(parseInt(day, 10));
 
-console.time('execution');
-
 const script = await import(path) as Record<string, Solution>;
+
+console.time('execution');
 
 if ('partOne' in script) {
 	console.log('Part 1:', await script.partOne(input));
