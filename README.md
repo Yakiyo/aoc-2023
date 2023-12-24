@@ -23,5 +23,5 @@ it should run it.
 While i do try to solve them by myself, but im
 [grug brained](https://grugbrain.dev), so i occassionally take
 inspiration from other people's solution, most notably from
-[didinele's solutions](https://github.com/didinele/aoc-2023), he
-writes em pretty neatly.
+[didinele's solutions](https://github.com/didinele/aoc-2023) &
+[butterstroke's solutions](https://github.com/Butterstroke/Advent-of-Code-2023)
