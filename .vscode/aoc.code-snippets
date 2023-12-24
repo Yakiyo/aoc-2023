@@ -18,5 +18,16 @@
 			"\treturn ${1:input};"
 			"}\n"
 		]
+	},
+	"commented answers": {
+		"scope": "javascript,typescript",
+		"prefix": "ans",
+		"description": "create commented answers",
+		"body": [
+			"/**",
+			" * 1: ${1:0}",
+			" * 2: ${2:0}",
+			" */"
+		]
 	}
 }
