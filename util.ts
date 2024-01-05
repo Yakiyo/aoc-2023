@@ -8,3 +8,8 @@ export const isNum = (char: string): boolean =>
 export type Awaitable<T> = T | Promise<T>;
 
 export type Solution = (input: string) => Awaitable<number>;
+
+export function debug<T>(value: T, extra?: unknown): T {
+	console.log(extra ? extra : '', value);
+	return value;
+}
