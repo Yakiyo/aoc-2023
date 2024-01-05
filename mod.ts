@@ -36,7 +36,8 @@ if (!exists(path)) {
 	}
 }
 
-const input = await readInput(parseInt(day, 10));
+// all aoc inputs end with an empty line, trim it since solutions dont handle that empty line
+const input = (await readInput(parseInt(day, 10))).trimEnd();
 
 const script = await import(path) as Record<string, Solution>;
 
