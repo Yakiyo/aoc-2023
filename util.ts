@@ -1,3 +1,5 @@
+import { assertEquals } from 'https://deno.land/std@0.208.0/assert/mod.ts';
+
 export function readInput(day: number): Promise<string> {
 	return Deno.readTextFile(`./inputs/${day}.txt`);
 }
@@ -13,3 +15,24 @@ export function debug<T>(value: T, extra?: unknown): T {
 	console.log(extra ? extra : '', value);
 	return value;
 }
+
+/**
+ * Equivalent to transposing a square matrix
+ */
+export function transpose<T>(array: T[][]): T[][] {
+	return array[0].map((_, i) => array.map((x) => x[i]));
+}
+
+Deno.test('transpose test', () => {
+	const array = [
+		[1, 2, 3],
+		[4, 5, 6],
+		[7, 8, 10],
+	];
+	const expected = [
+		[1, 4, 7],
+		[2, 5, 8],
+		[3, 6, 10],
+	];
+	assertEquals(transpose(array), expected);
+});
