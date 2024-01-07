@@ -25,7 +25,7 @@ export function transpose<T>(array: T[][]): T[][] {
 
 /**
  * Check if array a and b are the same or not
- * 
+ *
  * We use the assertEquals func from the testing module in std.
  * If it throws, they are not the same, if it doesnt, then they are.
  */
